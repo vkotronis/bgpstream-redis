@@ -1,4 +1,4 @@
-FROM python:3.6.7
+FROM pypy:3-6.0
 
 LABEL maintainer="Dimitrios Mavrommatis <jim.mavrommatis@gmail.com>"
 
@@ -35,7 +35,7 @@ WORKDIR /root/src
 RUN curl -O http://bgpstream.caida.org/bundles/caidabgpstreamwebhomepage/dists/pybgpstream-2.0.0-beta-2.tar.gz && \
     tar zxf pybgpstream-2.0.0-beta-2.tar.gz
 WORKDIR /root/src/pybgpstream-2.0.0
-RUN python setup.py build_ext && python setup.py install
+RUN pypy3 setup.py build_ext && pypy3 setup.py install
 
 WORKDIR /root/src
 
