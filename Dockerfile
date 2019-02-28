@@ -45,6 +45,20 @@ WORKDIR /root/src/redis-stable
 RUN make && make install && ldconfig && \
     mkdir -p /etc/redis/ && cp redis.conf /etc/redis/
 
+WORKDIR /root/src
+
+RUN curl -LO http://pyyaml.org/download/libyaml/yaml-0.2.1.tar.gz && \
+    tar xzf yaml-0.2.1.tar.gz
+WORKDIR /root/src/yaml-0.2.1
+RUN ./configure && make && make install
+
+WORKDIR /root/src/
+
+RUN curl -O https://pyyaml.org/download/pyyaml/PyYAML-3.13.tar.gz && \
+    tar xzf PyYAML-3.13.tar.gz
+WORKDIR /root/src/PyYAML-3.13
+RUN python setup.py --with-libyaml install
+
 WORKDIR /root
 
 RUN apt-get clean && \
