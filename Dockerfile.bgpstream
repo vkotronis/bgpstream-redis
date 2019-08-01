@@ -24,7 +24,7 @@ RUN ./configure && make && make install && ldconfig
 
 WORKDIR /root/src
 
-RUN curl -O http://bgpstream.caida.org/bundles/caidabgpstreamwebhomepage/dists/libbgpstream-2.0.0-beta-5.tar.gz && \
+RUN curl -O https://bgpstream.caida.org/bundles/caidabgpstreamwebhomepage/dists/libbgpstream-2.0.0-beta-5.tar.gz && \
     tar zxf libbgpstream-2.0.0-beta-5.tar.gz
 RUN patch -p0 < /root/libbgpstream.patch
 WORKDIR /root/src/libbgpstream-2.0.0
@@ -32,7 +32,7 @@ RUN ./configure && make && make install && ldconfig
 
 WORKDIR /root/src
 
-RUN curl -O http://bgpstream.caida.org/bundles/caidabgpstreamwebhomepage/dists/pybgpstream-2.0.0-beta-2.tar.gz && \
+RUN curl -O https://bgpstream.caida.org/bundles/caidabgpstreamwebhomepage/dists/pybgpstream-2.0.0-beta-2.tar.gz && \
     tar zxf pybgpstream-2.0.0-beta-2.tar.gz
 WORKDIR /root/src/pybgpstream-2.0.0
 RUN python setup.py build_ext && python setup.py install
