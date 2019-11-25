@@ -3,7 +3,7 @@ FROM caida/bgpstream:2.0.0-rc2
 LABEL maintainer="Dimitrios Mavrommatis <jim.mavrommatis@gmail.com>"
 
 RUN apt-get update && \
-    apt-get -y install build-essential python-dev
+    apt-get -y install build-essential python3-dev python3-setuptools
 
 RUN mkdir /root/src
 WORKDIR /root/src
@@ -17,6 +17,7 @@ RUN make && make install && ldconfig && \
 WORKDIR /root
 
 RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /root/*
+    rm -rf /var/lib/apt/lists/* /root/* && \
+    ln -s /usr/bin/python3 /usr/local/bin/python
 
 ENTRYPOINT ["bash"]
